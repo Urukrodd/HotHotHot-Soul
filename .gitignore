@@ -1,0 +1,6 @@
+# file: ~/.gitignore_global
+.idea
+
+/vendor/
+/node_modules/
+.env
