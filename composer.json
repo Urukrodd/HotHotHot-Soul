@@ -29,7 +29,8 @@
     "twig/twig": "^2.0",
     "vlucas/phpdotenv": "^5.2",
     "ext-pdo": "*",
-    "erusev/parsedown": "^1.7"
+    "erusev/parsedown": "^1.7",
+    "twig/markdown-extra": "^3.3"
   },
   "require-dev": {
     "roave/security-advisories": "dev-master",
