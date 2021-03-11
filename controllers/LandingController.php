@@ -4,6 +4,7 @@
 namespace app\controllers;
 
 use app\core\Controller;
+use app\models\Capteur;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
@@ -21,8 +22,21 @@ class LandingController extends Controller
 	public function index(): string
 	{
 		try {
-			return $this->render('home.html.twig');
+            $capteurModel = new Capteur;
+
+            $capteurModel->saveData();
+
+			return $this->render('home.html.twig', array(
+                "valeurInterieur" => $capteurModel->getValeurCapteur()['capteurs'][0]['Valeur'],
+                "valeurExterieur" => $capteurModel->getValeurCapteur()['capteurs'][1]['Valeur'],
+            ));
 		} catch (LoaderError | RuntimeError | SyntaxError $e) {
 		}
 	}
+
+    public function save() {
+        $capteurModel = new Capteur;
+
+        $capteurModel->saveData();
+    }
 }

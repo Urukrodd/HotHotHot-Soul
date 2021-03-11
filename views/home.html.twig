@@ -12,7 +12,7 @@
 							Capteur Interieur
 						</p>
 					</div>
-					<div class="rounded-full h-16 w-16 flex items-center justify-center bg-red-500 text-white">30°</div>
+					<div id="valeurInterieur" class="rounded-full h-16 w-16 flex items-center justify-center bg-red-500 text-white">{{ valeurInterieur }}°</div>
 				</div>
 			</div>
 		</div>
@@ -24,11 +24,28 @@
 							Capteur Exterieur
 						</p>
 					</div>
-					<div class="rounded-full h-16 w-16 flex items-center justify-center bg-blue-500 text-white">15°</div>
+					<div id="valeurExterieur" class="rounded-full h-16 w-16 flex items-center justify-center bg-blue-500 text-white">{{ valeurExterieur }}°</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
+	<script>
+		let socket = new WebSocket('wss://ws.hothothot.dog:9502');
+		socket.onopen = function(event) {
+			console.log("Connexion établie");
+			socket.send("coucou !");
+		}
+		socket.onmessage = function(event) {
+			datas = JSON.parse(event.data);
+
+			let dataInterieur = document.getElementById("valeurInterieur");
+			let dataExterieur = document.getElementById("valeurExterieur");
+
+			dataInterieur.innerHTML = datas.capteurs[0].Valeur + '°';
+			dataExterieur.innerHTML = datas.capteurs[1].Valeur + '°';
+		}
+	</script>
 
 {% endblock %}
 
