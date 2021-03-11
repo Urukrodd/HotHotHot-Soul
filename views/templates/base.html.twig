@@ -121,23 +121,5 @@
     {% block sidebar %}{% endblock %}
     {% block content %}{% endblock %}
 	{% block script %}{% endblock %}
-
-	<script>
-		let button = document.getElementById('menuBtn');
-		let menu = document.getElementById('mobile-menu');
-
-		let state = true;
-		button.addEventListener('click', () => {
-			if (state) {
-				menu.classList.add('content');
-				menu.classList.remove('hidden');
-				state = false;
-			} else {
-				menu.classList.add('hidden');
-				menu.classList.remove('content');
-				state = true;
-			}
-		});
-	</script>
 </body>
 </html>

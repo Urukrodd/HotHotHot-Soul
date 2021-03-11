@@ -21,7 +21,7 @@ class LandingController extends Controller
 	public function index(): string
 	{
 		try {
-			return $this->render('landing.html.twig');
+			return $this->render('home.html.twig');
 		} catch (LoaderError | RuntimeError | SyntaxError $e) {
 		}
 	}
