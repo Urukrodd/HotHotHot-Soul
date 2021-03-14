@@ -46,6 +46,18 @@ Pour créer un compte super utilisateur, il faut utiliser la commande :
 php core/Commands/createSuperUser.php username email password
 ```
 
+
+### Générer et regénerer la documentation
+
+Pour générer la documentation : 
+- S'assurer de la présence de fichiers Markdown (.md) dans `/doc/markdown`.
+Ensuite exécuter la commande
+
+```
+php soulGen.php
+```
+La documentation sera générée dans `public/docs/` et accessible depuis la partie "documentation du site".
+
 ### Utilisation
 
 L'application se trouve sur [le port 80](http://localhost:80). Pour accéder directement à la base de données, cela se
