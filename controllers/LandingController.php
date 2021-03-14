@@ -25,10 +25,15 @@ class LandingController extends Controller
             $capteurModel = new Capteur;
 
             $capteurModel->saveData();
+            $capteurModel->saveMinMaxValues();
 
 			return $this->render('home.html.twig', array(
                 "valeurInterieur" => $capteurModel->getValeurCapteur()['capteurs'][0]['Valeur'],
                 "valeurExterieur" => $capteurModel->getValeurCapteur()['capteurs'][1]['Valeur'],
+                "minInterieur" => $capteurModel->getMinMaxValues()['minInterieur'],
+                "maxInterieur" => $capteurModel->getMinMaxValues()['maxInterieur'],
+                "minExterieur" => $capteurModel->getMinMaxValues()['minExterieur'],
+                "maxExterieur" => $capteurModel->getMinMaxValues()['maxExterieur'],
             ));
 		} catch (LoaderError | RuntimeError | SyntaxError $e) {
 		}
