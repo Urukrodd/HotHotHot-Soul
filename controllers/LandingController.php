@@ -4,6 +4,7 @@
 namespace app\controllers;
 
 use app\core\Controller;
+use app\models\Capteur;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
@@ -21,8 +22,26 @@ class LandingController extends Controller
 	public function index(): string
 	{
 		try {
-			return $this->render('home.html.twig');
+            $capteurModel = new Capteur;
+
+            $capteurModel->saveData();
+            $capteurModel->saveMinMaxValues();
+
+			return $this->render('home.html.twig', array(
+                "valeurInterieur" => $capteurModel->getValeurCapteur()['capteurs'][0]['Valeur'],
+                "valeurExterieur" => $capteurModel->getValeurCapteur()['capteurs'][1]['Valeur'],
+                "minInterieur" => $capteurModel->getMinMaxValues()['minInterieur'],
+                "maxInterieur" => $capteurModel->getMinMaxValues()['maxInterieur'],
+                "minExterieur" => $capteurModel->getMinMaxValues()['minExterieur'],
+                "maxExterieur" => $capteurModel->getMinMaxValues()['maxExterieur'],
+            ));
 		} catch (LoaderError | RuntimeError | SyntaxError $e) {
 		}
 	}
+
+    public function save() {
+        $capteurModel = new Capteur;
+
+        $capteurModel->saveData();
+    }
 }

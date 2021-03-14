@@ -20,10 +20,20 @@ class m0001_initial
 
 		$SQL .= "CREATE TABLE IF NOT EXISTS HotHotHot (
                 id INT AUTO_INCREMENT PRIMARY KEY,
+                category VARCHAR(255),
+                pos VARCHAR(255),
+                val FLOAT,
+                created_at DATETIME
+            );";
+
+        $SQL .= "CREATE TABLE IF NOT EXISTS MinMax (
+                id INT AUTO_INCREMENT PRIMARY KEY,
                 typed VARCHAR(255),
-                named VARCHAR(255),
-                valued FLOAT,
-                created_at INT
+                minInterieur FLOAT,
+                maxInterieur FLOAT,
+                minExterieur FLOAT,
+                maxExterieur FLOAT,
+                created_at DATETIME
             );";
 
 		$db->pdo->exec($SQL);
