@@ -4,30 +4,29 @@
 
 {% block content %}
 	<div class="flex w-full justify-center flex-wrap">
-		<div class="shadow-md bg-gray- rounded-lg overflow-hidden w-72 m-10">
-			<div class="p-4">
-				<div class="flex items-center justify-center">
-					<div class="ml-3 w-0 flex-1 pt-0.5">
-						<p class="text-sm font-medium text-gray-900">
-							Capteur Interieur
-						</p>
-					</div>
-					<div id="valeurInterieur" class="rounded-full h-16 w-16 flex items-center justify-center bg-red-500 text-white">{{ valeurInterieur }}°</div>
-				</div>
+
+
+		<div class="shadow-md rounded-lg overflow-hidden w-72 mx-10 my-3 md:my-10 border b-gray-400 rounded flex flex-col justify-center items-center text-center p-6 bg-white">
+			<div class="text-md font-semibold flex flex-col text-gray-900">Capteur Interieur</div>
+			<div class="w-32 h-32 flex items-center justify-center">
+				<svg  class="h-20 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+				</svg>
 			</div>
+			<div id="valeurInterieur" class="text-3xl font-bold rounded-full mb-6 h-24 w-24 flex items-center justify-center bg-gradient-to-t from-red-400 to-red-500 shadow-lg transform text-white">{{ valeurInterieur }}°</div>
 		</div>
-		<div class="shadow-md rounded-lg overflow-hidden w-72 m-10">
-			<div class="p-4">
-				<div class="flex items-center justify-center">
-					<div class="ml-3 w-0 flex-1 pt-0.5">
-						<p class="text-sm font-medium text-gray-900">
-							Capteur Exterieur
-						</p>
-					</div>
-					<div id="valeurExterieur" class="rounded-full h-16 w-16 flex items-center justify-center bg-blue-500 text-white">{{ valeurExterieur }}°</div>
-				</div>
+
+		<div class="shadow-md rounded-lg overflow-hidden w-72 mx-10 my-3 md:my-10 border b-gray-400 rounded flex flex-col justify-center items-center text-center p-6 bg-white">
+			<div class="text-md font-semibold flex flex-col text-gray-900">Capteur Exterieur</div>
+			<div class="w-32 h-32 flex items-center justify-center">
+				<svg class="h-20 text-blue-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+				</svg>
 			</div>
+
+			<div id="valeurExterieur" class="text-3xl font-bold rounded-full mb-6 h-24 w-24 flex items-center justify-center bg-gradient-to-t from-blue-400 to-blue-500 shadow-lg transform text-white">{{ valeurExterieur }}°</div>
 		</div>
+
 	</div>
 
 	<script>
