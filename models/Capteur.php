@@ -30,7 +30,7 @@ class Capteur
         $timestampInterieur = date("Y-m-d H:i:s", $values[0]['Timestamp']);
         $timestampExterieur = date("Y-m-d H:i:s", $values[1]['Timestamp']);
 
-        $SQL = "INSERT INTO hothothot (category, pos, val, created_at)
+        $SQL = "INSERT INTO HotHotHot (category, pos, val, created_at)
                 VALUES 
                        ('$typeInterieur', '$nomInterieur', '$valeurInterieur', '$timestampInterieur'),
                        ('$typeExterieur', '$nomExterieur', '$valeurExterieur', '$timestampExterieur');";
@@ -49,15 +49,15 @@ class Capteur
         $valeurExterieur = $values[1]['Valeur'];
         $timestamp = date("Y-m-d", $values[0]['Timestamp']);
 
-        $SQL = "SELECT count(*) FROM minmax";
+        $SQL = "SELECT count(*) FROM MinMax";
         $nbRows = $pdo->query($SQL)->fetch();
 
         if ((int)$nbRows[0] === 0) {
-            $SQL = "INSERT INTO minmax (typed, minInterieur, maxInterieur, minExterieur, maxExterieur, created_at) VALUES('$typeInterieur', '$valeurInterieur', '$valeurInterieur', '$valeurExterieur', '$valeurExterieur', '$timestamp');";
+            $SQL = "INSERT INTO MinMax (typed, minInterieur, maxInterieur, minExterieur, maxExterieur, created_at) VALUES('$typeInterieur', '$valeurInterieur', '$valeurInterieur', '$valeurExterieur', '$valeurExterieur', '$timestamp');";
             $pdo->exec($SQL);
         }
 
-        $SQL = "SELECT * FROM minmax";
+        $SQL = "SELECT * FROM MinMax";
         $rows = $pdo->query($SQL);
 
 
@@ -72,13 +72,13 @@ class Capteur
                     $maxExterieur = $row['maxExterieur'];
 
                     if ($row['minInterieur'] > $valeurInterieur) {
-                        $SQL = "UPDATE minmax SET typed='$typeInterieur', minInterieur='$valeurInterieur', maxInterieur='$maxInterieur', minExterieur='$minExterieur', maxExterieur='$maxExterieur', created_at='$timestamp' WHERE id='$id';";
+                        $SQL = "UPDATE MinMax SET typed='$typeInterieur', minInterieur='$valeurInterieur', maxInterieur='$maxInterieur', minExterieur='$minExterieur', maxExterieur='$maxExterieur', created_at='$timestamp' WHERE id='$id';";
                     } elseif ($row['maxInterieur'] < $valeurInterieur) {
-                        $SQL = "UPDATE minmax SET typed='$typeInterieur', minInterieur='$minInterieur', maxInterieur='$valeurInterieur', minExterieur='$minExterieur', maxExterieur='$maxExterieur', created_at='$timestamp' WHERE id='$id';";
+                        $SQL = "UPDATE MinMax SET typed='$typeInterieur', minInterieur='$minInterieur', maxInterieur='$valeurInterieur', minExterieur='$minExterieur', maxExterieur='$maxExterieur', created_at='$timestamp' WHERE id='$id';";
                     } elseif ($row['minExterieur'] > $valeurExterieur) {
-                        $SQL = "UPDATE minmax SET typed='$typeInterieur', minInterieur='$minInterieur', maxInterieur='$maxInterieur', minExterieur='$valeurExterieur', maxExterieur='$maxExterieur', created_at='$timestamp' WHERE id='$id';";
+                        $SQL = "UPDATE MinMax SET typed='$typeInterieur', minInterieur='$minInterieur', maxInterieur='$maxInterieur', minExterieur='$valeurExterieur', maxExterieur='$maxExterieur', created_at='$timestamp' WHERE id='$id';";
                     } elseif ($row['maxExterieur'] < $valeurExterieur) {
-                        $SQL = "UPDATE minmax SET typed='$typeInterieur', minInterieur='$minInterieur', maxInterieur='$maxInterieur', minExterieur='$minExterieur', maxExterieur='$valeurExterieur', created_at='$timestamp' WHERE id='$id';";
+                        $SQL = "UPDATE MinMax SET typed='$typeInterieur', minInterieur='$minInterieur', maxInterieur='$maxInterieur', minExterieur='$minExterieur', maxExterieur='$valeurExterieur', created_at='$timestamp' WHERE id='$id';";
                     }
                 }
             }
@@ -90,7 +90,7 @@ class Capteur
         $pdo = Application::$app->db->pdo;
         $current_date = date("Y-m-d");
 
-        $SQL = "SELECT minInterieur,maxInterieur,minExterieur,maxExterieur FROM minmax WHERE created_at='$current_date'";
+        $SQL = "SELECT minInterieur,maxInterieur,minExterieur,maxExterieur FROM MinMax WHERE created_at='$current_date'";
 
         return $pdo->query($SQL)->fetch();
     }
