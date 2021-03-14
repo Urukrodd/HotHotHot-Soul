@@ -31,6 +31,24 @@ cd public/
 php -S [monaddresse]
 ```
 
+### Créer un Simple User
+
+Pour créer un utilisateur simple, il faut utiliser la commande :
+
+```
+php core/Commands/createSimpleUser.php username email password
+```
+
+### Créer un Super User
+
+Afin de créer un SuperUser, on peut utiliser la commande :
+
+```
+php core/Commands/createSuperUser.php username email password
+```
+
+Grâce à cette commande on peut créer des super utilisateurs.
+
 ### Comptes Utilisateurs
 
 L'application se trouve sur [le port 80](http://localhost:80). Pour accéder directement à la base de données, cela se
