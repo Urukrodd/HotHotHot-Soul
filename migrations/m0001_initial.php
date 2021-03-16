@@ -20,7 +20,7 @@ class m0001_initial
             last_connection DATETIME
         );";
 
-		$SQL .= "CREATE TABLE IF NOT EXISTS HotHotHot (
+		$SQL .= "CREATE TABLE IF NOT EXISTS Capteur (
 			id INT AUTO_INCREMENT PRIMARY KEY,
 			category VARCHAR(255),
 			pos VARCHAR(255),

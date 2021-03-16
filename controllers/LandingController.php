@@ -24,10 +24,10 @@ class LandingController extends Controller
     {
         $pdo = Application::$app->db->pdo;
 
-        $stmt = $pdo->query("SELECT * FROM HotHotHot WHERE pos='interieur' AND created_at IN (SELECT max(created_at) FROM HotHotHot);");
+        $stmt = $pdo->query("SELECT * FROM Capteur WHERE pos='interieur' AND created_at IN (SELECT max(created_at) FROM Capteur);");
         $interieur = $stmt->fetch();
 
-        $stmt = $pdo->query("SELECT * FROM HotHotHot WHERE pos='exterieur' AND created_at IN (SELECT max(created_at) FROM HotHotHot);");
+        $stmt = $pdo->query("SELECT * FROM Capteur WHERE pos='exterieur' AND created_at IN (SELECT max(created_at) FROM Capteur);");
         $exterieur = $stmt->fetch();
 
         $stmt = $pdo->query("SELECT * FROM MinMax WHERE created_at IN (SELECT max(created_at) FROM MinMax);");

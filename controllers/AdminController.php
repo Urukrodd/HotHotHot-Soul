@@ -126,7 +126,7 @@ class AdminController extends Controller
     {
         if ($this->adminCheck()) {
             $pdo = Application::$app->db->pdo;
-            $stmt = $pdo->prepare("SELECT * FROM HotHotHot");
+            $stmt = $pdo->prepare("SELECT * FROM Capteur");
             $stmt->execute();
             $result = $stmt->fetchAll();
 
@@ -142,7 +142,7 @@ class AdminController extends Controller
             $get = $request->getBody();
 
             $pdo = Application::$app->db->pdo;
-            $stmt = $pdo->prepare("DELETE FROM HotHotHot WHERE id=?");
+            $stmt = $pdo->prepare("DELETE FROM Capteur WHERE id=?");
             $stmt->execute(array($get['id']));
 
             $this->redirect('/admin/temp');
