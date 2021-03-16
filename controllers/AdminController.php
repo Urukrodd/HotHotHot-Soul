@@ -120,4 +120,32 @@ class AdminController extends Controller
             }
         }
     }
+
+
+    public function tempShow()
+    {
+        if ($this->adminCheck()) {
+            $pdo = Application::$app->db->pdo;
+            $stmt = $pdo->prepare("SELECT * FROM Capteur");
+            $stmt->execute();
+            $result = $stmt->fetchAll();
+
+            return $this->render('templates/admin/temperatures/show.html.twig', array(
+                'items' => $result,
+            ));
+        }
+    }
+
+    public function tempRemove(Request $request)
+    {
+        if ($this->adminCheck()) {
+            $get = $request->getBody();
+
+            $pdo = Application::$app->db->pdo;
+            $stmt = $pdo->prepare("DELETE FROM Capteur WHERE id=?");
+            $stmt->execute(array($get['id']));
+
+            $this->redirect('/admin/temp');
+        }
+    }
 }

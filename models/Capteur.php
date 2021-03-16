@@ -30,7 +30,7 @@ class Capteur
         $timestampInterieur = date("Y-m-d H:i:s", $values[0]['Timestamp']);
         $timestampExterieur = date("Y-m-d H:i:s", $values[1]['Timestamp']);
 
-        $SQL = "INSERT INTO HotHotHot (category, pos, val, created_at)
+        $SQL = "INSERT INTO Capteur (category, pos, val, created_at)
                 VALUES 
                        ('$typeInterieur', '$nomInterieur', '$valeurInterieur', '$timestampInterieur'),
                        ('$typeExterieur', '$nomExterieur', '$valeurExterieur', '$timestampExterieur');";
