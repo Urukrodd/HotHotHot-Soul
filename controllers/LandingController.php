@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 namespace app\controllers;
 
@@ -9,23 +10,19 @@ use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
-
 /**
  * Class LandingController
  * @package app\controllers
  */
 class LandingController extends Controller
 {
-	/**
-	 * @return string
-	 */
-	public function index(): string
-	{
-		try {
+    /**
+     * @return string
+     */
+    public function index(): string
+    {
+        try {
             $capteurModel = new Capteur;
-
-            $capteurModel->saveData();
-            $capteurModel->saveMinMaxValues();
 
 			return $this->render('home.html.twig', array(
                 "valeurInterieur" => $capteurModel->getValeurCapteur()['capteurs'][0]['Valeur'],
@@ -36,12 +33,6 @@ class LandingController extends Controller
                 "maxExterieur" => $capteurModel->getMinMaxValues()['maxExterieur'],
             ));
 		} catch (LoaderError | RuntimeError | SyntaxError $e) {
-		}
-	}
-
-    public function save() {
-        $capteurModel = new Capteur;
-
-        $capteurModel->saveData();
+        }
     }
 }

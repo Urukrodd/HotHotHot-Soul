@@ -1,36 +1,62 @@
 # HotHotHot !
 
-GroupMaker est une application web conçue en PHP qui a pour but de faire des groupes de personnes aléatoirement. Le site
-est en ligne et est disponible à cette adresse: https://groupmaker.maximebernard-etu.fr
+HotHotHot est une application web conçue en PHP et JavaScript qui dont le but est être un interface d'information et de gestion d'un système domotique.
 
 ## Installation
 
-J'ai mis en place des images Docker pour faciliter l'installation sur de nouvelles machines sans plus de configurations.
-Cela inclut une base de données MYSQL avec PhpMyAdmin et un serveur composé de PHP 8.0 et Apache.
+Nous utilisons une base de données MYSQL avec PhpMyAdmin et un serveur composé de PHP 8.0 et Apache. Pour la base de données, PHP et Apache, il est possible de passer par un WAMP ou de l'installer localement.
 
-### Docker
+NB : Avant de lancer l'application, il faut effectuer les migrations (`php migrations.php` à la racine de l'application), et installer Composer (`composer install` à la racine de l'application). PHP 8 est obligatoire pour effectuer ces migrations.
 
-Installer [Docker Desktop](https://www.docker.com/products/docker-desktop) et ne pas oublier de le lancer une fois
-l'installation terminée.
+La configuration de la base de données se fait dans le .env (un .env.example est disponible pour donner la syntaxe à suivre). La manière la plus simple de lancer l'application métier est d'effectuer un `php -S [monaddresse]` depuis le dossier `public/` du framework.
 
-> Si vous n'êtes pas familier avec Docker, je vous conseille ces vidéos:
->1. Bases de Docker: https://www.youtube.com/watch?v=SXB6KJ4u5vg
->2. Créer une image Docker: https://www.youtube.com/watch?v=cWkmqZPWwiw
->3. Utiliser Docker compose: https://www.youtube.com/watch?v=dWcoIxRfs8Y
 
 ### Lancer l'application
 
 > :warning: **Attention**: fermez WAMP ou tout autres logiciel utilisant le port 80, 8080 ou 3306!
 
-Pour lancer l'application, il vous faudra taper ces commandes dans le répertoire où se trouve 'docker-compose.yml':
+Pour lancer l'application, il vous faudra taper ces commandes depuis la racine du projet :
 
 ```
-docker-compose build
+composer install
 ```
 
 ```
-docker-compose up
+php migrations.php
 ```
+
+```
+cd public/
+php -S [monaddresse]
+```
+
+### Créer un compte utilisateur
+
+Pour créer un compte utilisateur, il faut utiliser la commande :
+
+```
+php core/Commands/createSimpleUser.php username email password
+```
+
+### Créer un compte Super utilisateur
+
+Pour créer un compte super utilisateur, il faut utiliser la commande :
+
+```
+php core/Commands/createSuperUser.php username email password
+```
+
+
+### Générer et regénerer la documentation
+
+Pour générer la documentation : 
+- S'assurer de la présence de fichiers Markdown (.md) dans `/doc/markdown`.
+Ensuite exécuter la commande
+
+```
+php soulGen.php
+```
+La documentation sera générée dans `public/docs/` et accessible depuis la partie "documentation du site".
 
 ### Utilisation
 
@@ -43,4 +69,3 @@ ce [template](https://drive.google.com/file/d/1yrEBeDg6ypIsj1i8ccbXeVn_YEbebCZF/
 
 > Il se trouve aussi à la racine du projet sous le nom de list.xlsx
 
-test
