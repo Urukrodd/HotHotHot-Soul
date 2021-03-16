@@ -43,6 +43,7 @@ class Capteur
         $values = $this->getValeurCapteur()['capteurs'];
 
         $current_date = date("Y-m-d");
+        $newDay = true;
 
         $typeInterieur = $values[0]['type'];
         $valeurInterieur = $values[0]['Valeur'];
@@ -65,6 +66,7 @@ class Capteur
             foreach ($rows as $row) {
                 if ($current_date === date('Y-m-d', strtotime($row["created_at"]))) {
 
+                    $newDay = false;
                     $id = $row['id'];
                     $minInterieur = $row['minInterieur'];
                     $maxInterieur = $row['maxInterieur'];
@@ -83,6 +85,11 @@ class Capteur
                 }
             }
             $pdo->query($SQL);
+        }
+
+        if ($newDay) {
+            $SQL = "INSERT INTO MinMax (typed, minInterieur, maxInterieur, minExterieur, maxExterieur, created_at) VALUES('$typeInterieur', '$valeurInterieur', '$valeurInterieur', '$valeurExterieur', '$valeurExterieur', '$timestamp');";
+            $pdo->exec($SQL);
         }
     }
 
