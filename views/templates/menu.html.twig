@@ -87,9 +87,8 @@
                     </div>
                     <div class="lg:contents hidden">
                         {% if session.user %}
-                            <a href="/account" class="bg-gray-700 text-white px-3 py-2 rounded-md text-lg font-medium mr-1 ml-5">Mon compte</a>
+                            <a href="/profil" class="bg-gray-700 text-white px-3 py-2 rounded-md text-lg font-medium mr-1 ml-5">Mon compte</a>
                             <a href="/logout" class="bg-gray-700 text-white px-3 py-2 rounded-md text-lg font-medium ml-1">LogOut</a>
-                            <p class="text-white m-3">{{ session.user.name }}</p>
                         {% else %}
                             <a href="/login" class="bg-gray-700 text-white px-3 py-2 rounded-md text-lg font-medium mr-1 ml-5">LogIn</a>
                             <a href="/signup" class="bg-gray-700 text-white px-3 py-2 rounded-md text-lg font-medium ml-1">SignUp</a>

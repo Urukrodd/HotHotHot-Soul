@@ -42,5 +42,6 @@ $app->router->get('/documentation', [DocumentationController::class, 'index']);
 
 $app->router->get('/admin/temp', [AdminController::class, 'tempShow']);
 $app->router->get('/admin/temp/remove', [AdminController::class, 'tempRemove']);
+$app->router->get('/profil', [UserController::class, 'profil']);
 
 $app->run();

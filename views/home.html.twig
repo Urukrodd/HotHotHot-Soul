@@ -29,7 +29,9 @@
 			<div id="valeurExterieur" class="text-3xl font-bold rounded-full h-24 w-24 flex items-center justify-center bg-gradient-to-t from-blue-400 to-blue-500 shadow-lg transform text-white">{{ valeurExterieur }}°</div>
 		</div>
 	</div>
+{% endblock %}
 
+{% block script %}
 	<script>
 		let tempExterieur = $('#valeurExterieur').html().slice(0, -1);
 		let tempInterieur = $('#valeurInterieur').html().slice(0, -1);
@@ -73,9 +75,4 @@
 			$('#AlerteCapteursInterieur .tempDetailNumber').text(tempInterieur);
 		}
 	</script>
-
-{% endblock %}
-
-{% block script %}
-
 {% endblock %}
