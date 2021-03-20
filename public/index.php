@@ -38,7 +38,6 @@ $app->router->get('/admin/user/edit', [AdminController::class, 'userEdit']);
 $app->router->post('/admin/user/edit/send', [AdminController::class, 'userEditSend']);
 $app->router->get('/admin/user/add', [AdminController::class, 'userAdd']);
 $app->router->post('/admin/user/add/send', [AdminController::class, 'userAddSend']);
-$app->router->get('/documentation', [DocumentationController::class, 'index']);
 
 $app->router->get('/admin/temp', [AdminController::class, 'tempShow']);
 $app->router->get('/admin/temp/remove', [AdminController::class, 'tempRemove']);
