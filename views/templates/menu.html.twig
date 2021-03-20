@@ -114,34 +114,25 @@
     </nav>
 
     <script>
-        let menuButton = document.getElementById('menuBtn');
-        let alertButton = document.getElementById('alertBtn');
-        let menu = document.getElementById('mobile-menu');
-        let alert = document.getElementById('alert');
-
         let menuState = true;
-        menuButton.addEventListener('click', () => {
+        $('#menuBtn').on('click', (item) => {
             if (menuState) {
-                menu.classList.add('content');
-                menu.classList.remove('hidden');
+                $('#mobile-menu').addClass('content').removeClass('hidden');
                 menuState = false;
             } else {
-                menu.classList.add('hidden');
-                menu.classList.remove('content');
+                $('#mobile-menu').addClass('hidden').removeClass('content');
                 menuState = true;
             }
         });
 
         let alertState = true;
-        alertButton.addEventListener('click', () => {
-            if (alertState) {
-                alert.classList.add('content');
-                alert.classList.remove('hidden');
-                alertState = false;
+        $('#alertBtn').on('click', (item) => {
+            if (menuState) {
+                $('#alert').addClass('content').removeClass('hidden');
+                menuState = false;
             } else {
-                alert.classList.add('hidden');
-                alert.classList.remove('content');
-                alertState = true;
+                $('#alert').addClass('hidden').removeClass('content');
+                menuState = true;
             }
         });
 
