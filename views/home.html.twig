@@ -31,11 +31,11 @@
 	</div>
 
 	<script>
-		let tempExterieur = dataExterieur.innerHTML.substring(0,dataExterieur.innerHTML.length-1);
-		let tempInterieur = dataInterieur.innerHTML.substring(0,dataInterieur.innerHTML.length-1);
+		let tempExterieur = $('#valeurExterieur').html().slice(0, -1);
+		let tempInterieur = $('#valeurInterieur').html().slice(0, -1);
 
 
-		if(tempExterieur > 5) {
+		if(tempExterieur > 35) {
 			$('#AlerteCapteursExterieur').addClass("bg-red-600").removeClass("hidden");
 			$('#alertBtn').addClass("bg-red-600").removeClass("text-gray-400").addClass("text-white");
 			$('#AlerteCapteursExterieur a').text("Hot Hot Hot !");
