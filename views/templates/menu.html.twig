@@ -50,7 +50,7 @@
                             </button>
                         </div>
 
-                        <div id="alert" class="hidden p-2 origin-top-right absolute right-0 mt-2 w-64 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
+                        <div id="alert" class="z-10 hidden p-2 origin-top-right absolute right-0 mt-2 w-64 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
                             <div class="flex justify-around">
                                 <div class="flex flex-col items-center">
                                     <p class="text-xl">Interieur</p>
@@ -64,17 +64,23 @@
                                 </div>
                             </div>
                             <div class="mt-2">
-                                <button id="AlerteCapteursInterieur" class="text-white font-semibold rounded p-2 inline-flex w-full hidden">
-                                    <svg class="h-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                                    </svg>
-                                    <a id="AlertMessage">Message d'alerte Interieur</a>
+                                <button id="AlerteCapteursInterieur" class="mb-1 flex flex-col items-center text-white font-semibold rounded p-2 inline-flex w-full hidden">
+                                    <div class="flex">
+                                        <svg class="h-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                        </svg>
+                                        <a id="AlertMessage">Message d'alerte Interieur</a>
+                                    </div>
+                                    <p class="tempDetail text-xs hidden">Capteur Interieur: <span class="tempDetailNumber"></span>°</p>
                                 </button>
-                                <button id="AlerteCapteursExterieur" class="text-white font-semibold rounded p-2 inline-flex w-full hidden">
-                                    <svg class="h-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                                    </svg>
-                                    <a id="AlertMessage">Message d'alerte Exterieur</a>
+                                <button id="AlerteCapteursExterieur" class="flex flex-col items-center text-white font-semibold rounded p-2 inline-flex w-full hidden">
+                                    <div class="flex">
+                                        <svg class="h-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                        </svg>
+                                        <a id="AlertMessage">Message d'alerte Exterieur</a>
+                                    </div>
+                                    <p class="tempDetail text-xs hidden">Capteur Exterieur: <span class="tempDetailNumber"></span>°</p>
                                 </button>
                             </div>
                         </div>
@@ -137,6 +143,22 @@
                 alert.classList.add('hidden');
                 alert.classList.remove('content');
                 alertState = true;
+            }
+        });
+
+        $('#AlerteCapteursExterieur').on('click', (item) => {
+            if ($('#AlerteCapteursExterieur .tempDetail').hasClass('hidden')) {
+                $('#AlerteCapteursExterieur .tempDetail').removeClass('hidden');
+            } else {
+                $('#AlerteCapteursExterieur .tempDetail').addClass('hidden');
+            }
+        });
+
+        $('#AlerteCapteursInterieur').on('click', (item) => {
+            if ($('#AlerteCapteursInterieur .tempDetail').hasClass('hidden')) {
+                $('#AlerteCapteursInterieur .tempDetail').removeClass('hidden');
+            } else {
+                $('#AlerteCapteursInterieur .tempDetail').addClass('hidden');
             }
         });
     </script>
