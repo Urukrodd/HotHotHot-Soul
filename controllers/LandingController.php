@@ -6,10 +6,6 @@ namespace app\controllers;
 
 use app\core\Application;
 use app\core\Controller;
-use app\models\Capteur;
-use Twig\Error\LoaderError;
-use Twig\Error\RuntimeError;
-use Twig\Error\SyntaxError;
 
 /**
  * Class LandingController

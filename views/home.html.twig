@@ -51,103 +51,38 @@
 		let tempExterieur = dataExterieur.innerHTML.substring(0,dataExterieur.innerHTML.length-1);
 		let tempInterieur = dataInterieur.innerHTML.substring(0,dataInterieur.innerHTML.length-1);
 
-		if(tempExterieur > 35)
-		{
-			alerte.insertAdjacentHTML('beforeend', `<div class="mt-2">
-                                <p id="AlerteCapteurs" class="bg-red-600 text-white font-semibold rounded p-2 inline-flex w-full">
-                                    <svg class="h-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                                    </svg>
-                                    <a id="AlertMessage">Hot Hot Hot !</a>
-                                </p>
-                            </div>`);
-			alertButton.classList.remove("bg-gray-800");
-			alertButton.classList.remove("text-gray-400");
-			alertButton.classList.add("bg-red-600");
-			alertButton.classList.add("text-red-200");
 
+		if(tempExterieur > 35) {
+			$('#AlerteCapteursExterieur').addClass("bg-red-600").removeClass("hidden");
+			$('#alertBtn').addClass("bg-red-600").removeClass("text-gray-400").addClass("text-white");
+			$('#AlerteCapteursExterieur a').text("Hot Hot Hot !");
 		}
-		if(tempExterieur < 0)
-		{
-			alerte.insertAdjacentHTML('beforeend', `<div class="mt-2">
-                                <p id="AlerteCapteurs" class="bg-red-600 text-white font-semibold rounded p-2 inline-flex w-full">
-                                    <svg class="h-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                                    </svg>
-                                    <a id="AlertMessage">Banquise en vue !</a>
-                                </p>
-                            </div>`);
-			alertButton.classList.remove("bg-gray-800");
-			alertButton.classList.remove("text-gray-400");
-			alertButton.classList.add("bg-red-600");
-			alertButton.classList.add("text-red-200");
+		if(tempExterieur < 0) {
+			$('#AlerteCapteursExterieur').addClass('bg-blue-500').removeClass("hidden");
+			$('#alertBtn').addClass("bg-red-600").removeClass("text-gray-400").addClass("text-white");
+			$('#AlerteCapteursExterieur a').text("Banquise en vue !");
+		}
 
+		if(tempInterieur > 50) {
+			$('#AlerteCapteursInterieur').addClass('bg-red-500').removeClass("hidden");
+			$('#alertBtn').addClass("bg-red-600").removeClass("text-gray-400").addClass("text-white");
+			$('#AlerteCapteursInterieur a').text("Appelez les pompiers ou arrêtez votre barbecue !");
 		}
-		if(tempInterieur > 22)
-		{
-			alerte.insertAdjacentHTML('beforeend', `<div class="mt-2">
-                                <p id="AlerteCapteurs" class="bg-red-600 text-white font-semibold rounded p-2 inline-flex w-full">
-                                    <svg class="h-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                                    </svg>
-                                    <a id="AlertMessage">Baissez le chauffage !</a>
-                                </p>
-                            </div>`);
-			alertButton.classList.remove("bg-gray-800");
-			alertButton.classList.remove("text-gray-400");
-			alertButton.classList.add("bg-red-600");
-			alertButton.classList.add("text-red-200");
-
+		if(tempInterieur > 22) {
+			$('#AlerteCapteursInterieur').addClass('bg-red-500').removeClass("hidden");
+			$('#alertBtn').addClass("bg-red-600").removeClass("text-gray-400").addClass("text-white");
+			$('#AlerteCapteursInterieur a').text("Baissez le chauffage !");
 		}
-		if(tempInterieur > 50)
-		{
-			alerte.insertAdjacentHTML('beforeend', `<div class="mt-2">
-                                <p id="AlerteCapteurs" class="bg-red-600 text-white font-semibold rounded p-2 inline-flex w-full">
-                                    <svg class="h-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                                    </svg>
-                                    <a id="AlertMessage">Appelez les pompiers ou arrêtez votre barbecue !</a>
-                                </p>
-                            </div>`);
-			alertButton.classList.remove("bg-gray-800");
-			alertButton.classList.remove("text-gray-400");
-			alertButton.classList.add("bg-red-600");
-			alertButton.classList.add("text-red-200");
-
+		if(tempInterieur < 12) {
+			$('#AlerteCapteursInterieur').addClass('bg-blue-500').removeClass("hidden");
+			$('#alertBtn').addClass("bg-red-600").removeClass("text-gray-400").addClass("text-white");
+			$('#AlerteCapteursInterieur a').text("Montez le chauffage ou mettez un gros pull !");
 		}
-		if(tempInterieur < 12)
-		{
-			alerte.insertAdjacentHTML('beforeend', `<div class="mt-2">
-                                <p id="AlerteCapteurs" class="bg-red-600 text-white font-semibold rounded p-2 inline-flex w-full">
-                                    <svg class="h-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                                    </svg>
-                                    <a id="AlertMessage">Montez le chauffage ou mettez un gros pull  !</a>
-                                </p>
-                            </div>`);
-			alertButton.classList.remove("bg-gray-800");
-			alertButton.classList.remove("text-gray-400");
-			alertButton.classList.add("bg-red-600");
-			alertButton.classList.add("text-red-200");
-
+		if(tempInterieur < 0) {
+			$('#AlerteCapteursInterieur').addClass('bg-blue-500').removeClass("hidden");
+			$('#alertBtn').addClass("bg-red-600").removeClass("text-gray-400").addClass("text-white");
+			$('#AlerteCapteursInterieur a').text("Canalisations gelées, appelez SOS plombier - et mettez un bonnet !");
 		}
-		if(tempInterieur < 0)
-		{
-			alerte.insertAdjacentHTML('beforeend', `<div class="mt-2">
-                                <p id="AlerteCapteurs" class="bg-red-600 text-white font-semibold rounded p-2 inline-flex w-full">
-                                    <svg class="h-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                                    </svg>
-                                    <a id="AlertMessage">Canalisations gelées, appelez SOS plombier - et mettez un bonnet !</a>
-                                </p>
-                            </div>`);
-			alertButton.classList.remove("bg-gray-800");
-			alertButton.classList.remove("text-gray-400");
-			alertButton.classList.add("bg-red-600");
-			alertButton.classList.add("text-red-200");
-
-		}
-		console.log(tempInterieur);
 	</script>
 
 {% endblock %}
