@@ -14,7 +14,7 @@
 				</div>
 				<div class="text-md font-semibold flex flex-col text-gray-900">Capteur Interieur</div>
 			</div>
-			<div id="valeurInterieur" class="text-3xl font-bold rounded-full h-24 w-24 flex items-center justify-center bg-gradient-to-t from-red-400 to-red-500 shadow-lg transform text-white">{{ valeurInterieur }}°</div>
+			<div id="valeurInterieur" class="z-auto text-3xl font-bold rounded-full h-24 w-24 flex items-center justify-center bg-gradient-to-t from-red-400 to-red-500 shadow-lg transform text-white">{{ valeurInterieur }}°</div>
 		</div>
 
 		<div class="h-36 shadow-md rounded-lg overflow-hidden mx-10 my-3 md:my-10 border b-gray-400 rounded flex justify-center items-center p-6 bg-white">
@@ -26,68 +26,53 @@
 				</div>
 				<div class="text-md font-semibold flex flex-col text-gray-900">Capteur Exterieur</div>
 			</div>
-			<div id="valeurExterieur" class="text-3xl font-bold rounded-full mb-6 h-24 w-24 flex items-center justify-center bg-gradient-to-t from-blue-400 to-blue-500 shadow-lg transform text-white">{{ valeurExterieur }}°</div>
+			<div id="valeurExterieur" class="text-3xl font-bold rounded-full h-24 w-24 flex items-center justify-center bg-gradient-to-t from-blue-400 to-blue-500 shadow-lg transform text-white">{{ valeurExterieur }}°</div>
 		</div>
 	</div>
+{% endblock %}
 
+{% block script %}
 	<script>
-		let socket = new WebSocket('wss://ws.hothothot.dog:9502');
-		socket.onopen = function(event) {
-			console.log("Connexion établie");
-			socket.send("coucou !");
-		}
-		socket.onmessage = function(event) {
-			datas = JSON.parse(event.data);
-
-			let dataInterieur = document.getElementById("valeurInterieur");
-			let dataExterieur = document.getElementById("valeurExterieur");
-
-			dataInterieur.innerHTML = datas.capteurs[0].Valeur + '°';
-			dataExterieur.innerHTML = datas.capteurs[1].Valeur + '°';
-		}
-
-		let dataInterieur = document.getElementById("valeurInterieur");
-		let dataExterieur = document.getElementById("valeurExterieur");
-		let alerte = document.getElementById("alert");
-		let tempExterieur = dataExterieur.innerHTML.substring(0,dataExterieur.innerHTML.length-1);
-		let tempInterieur = dataInterieur.innerHTML.substring(0,dataInterieur.innerHTML.length-1);
+		let tempExterieur = $('#valeurExterieur').html().slice(0, -1);
+		let tempInterieur = $('#valeurInterieur').html().slice(0, -1);
 
 
 		if(tempExterieur > 35) {
 			$('#AlerteCapteursExterieur').addClass("bg-red-600").removeClass("hidden");
 			$('#alertBtn').addClass("bg-red-600").removeClass("text-gray-400").addClass("text-white");
 			$('#AlerteCapteursExterieur a').text("Hot Hot Hot !");
+			$('#AlerteCapteursExterieur .tempDetailNumber').text(tempExterieur);
 		}
 		if(tempExterieur < 0) {
 			$('#AlerteCapteursExterieur').addClass('bg-blue-500').removeClass("hidden");
 			$('#alertBtn').addClass("bg-red-600").removeClass("text-gray-400").addClass("text-white");
 			$('#AlerteCapteursExterieur a').text("Banquise en vue !");
+			$('#AlerteCapteursExterieur .tempDetailNumber').text(tempExterieur);
 		}
 
 		if(tempInterieur > 50) {
 			$('#AlerteCapteursInterieur').addClass('bg-red-500').removeClass("hidden");
 			$('#alertBtn').addClass("bg-red-600").removeClass("text-gray-400").addClass("text-white");
 			$('#AlerteCapteursInterieur a').text("Appelez les pompiers ou arrêtez votre barbecue !");
+			$('#AlerteCapteursInterieur .tempDetailNumber').text(tempInterieur);
 		}
 		if(tempInterieur > 22) {
 			$('#AlerteCapteursInterieur').addClass('bg-red-500').removeClass("hidden");
 			$('#alertBtn').addClass("bg-red-600").removeClass("text-gray-400").addClass("text-white");
 			$('#AlerteCapteursInterieur a').text("Baissez le chauffage !");
+			$('#AlerteCapteursInterieur .tempDetailNumber').text(tempInterieur);
 		}
 		if(tempInterieur < 12) {
 			$('#AlerteCapteursInterieur').addClass('bg-blue-500').removeClass("hidden");
 			$('#alertBtn').addClass("bg-red-600").removeClass("text-gray-400").addClass("text-white");
 			$('#AlerteCapteursInterieur a').text("Montez le chauffage ou mettez un gros pull !");
+			$('#AlerteCapteursInterieur .tempDetailNumber').text(tempInterieur);
 		}
 		if(tempInterieur < 0) {
 			$('#AlerteCapteursInterieur').addClass('bg-blue-500').removeClass("hidden");
 			$('#alertBtn').addClass("bg-red-600").removeClass("text-gray-400").addClass("text-white");
 			$('#AlerteCapteursInterieur a').text("Canalisations gelées, appelez SOS plombier - et mettez un bonnet !");
+			$('#AlerteCapteursInterieur .tempDetailNumber').text(tempInterieur);
 		}
 	</script>
-
-{% endblock %}
-
-{% block script %}
-
 {% endblock %}

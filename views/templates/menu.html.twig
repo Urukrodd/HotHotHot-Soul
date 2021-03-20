@@ -30,7 +30,7 @@
                                 </svg>
                                 Accueil
                             </a>
-                            <a href="/documentation" class="inline-flex text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-medium">
+                            <a href="/docs/index.html" class="inline-flex text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-medium">
                                 <svg class="h-6 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                                 </svg>
@@ -50,7 +50,7 @@
                             </button>
                         </div>
 
-                        <div id="alert" class="hidden p-2 origin-top-right absolute right-0 mt-2 w-64 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
+                        <div id="alert" class="z-10 hidden p-2 origin-top-right absolute right-0 mt-2 w-64 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu">
                             <div class="flex justify-around">
                                 <div class="flex flex-col items-center">
                                     <p class="text-xl">Interieur</p>
@@ -64,26 +64,31 @@
                                 </div>
                             </div>
                             <div class="mt-2">
-                                <button id="AlerteCapteursInterieur" class="text-white font-semibold rounded p-2 inline-flex w-full hidden">
-                                    <svg class="h-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                                    </svg>
-                                    <a id="AlertMessage">Message d'alerte Interieur</a>
+                                <button id="AlerteCapteursInterieur" class="mb-1 flex flex-col items-center text-white font-semibold rounded p-2 inline-flex w-full hidden">
+                                    <div class="flex">
+                                        <svg class="h-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                        </svg>
+                                        <a id="AlertMessage">Message d'alerte Interieur</a>
+                                    </div>
+                                    <p class="tempDetail text-xs hidden">Capteur Interieur: <span class="tempDetailNumber"></span>°</p>
                                 </button>
-                                <button id="AlerteCapteursExterieur" class="text-white font-semibold rounded p-2 inline-flex w-full hidden">
-                                    <svg class="h-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                                    </svg>
-                                    <a id="AlertMessage">Message d'alerte Exterieur</a>
+                                <button id="AlerteCapteursExterieur" class="flex flex-col items-center text-white font-semibold rounded p-2 inline-flex w-full hidden">
+                                    <div class="flex">
+                                        <svg class="h-6 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                        </svg>
+                                        <a id="AlertMessage">Message d'alerte Exterieur</a>
+                                    </div>
+                                    <p class="tempDetail text-xs hidden">Capteur Exterieur: <span class="tempDetailNumber"></span>°</p>
                                 </button>
                             </div>
                         </div>
                     </div>
                     <div class="lg:contents hidden">
                         {% if session.user %}
-                            <a href="/account" class="bg-gray-700 text-white px-3 py-2 rounded-md text-lg font-medium mr-1 ml-5">Mon compte</a>
+                            <a href="/profil" class="bg-gray-700 text-white px-3 py-2 rounded-md text-lg font-medium mr-1 ml-5">Mon compte</a>
                             <a href="/logout" class="bg-gray-700 text-white px-3 py-2 rounded-md text-lg font-medium ml-1">LogOut</a>
-                            <p class="text-white m-3">{{ session.user.name }}</p>
                         {% else %}
                             <a href="/login" class="bg-gray-700 text-white px-3 py-2 rounded-md text-lg font-medium mr-1 ml-5">LogIn</a>
                             <a href="/signup" class="bg-gray-700 text-white px-3 py-2 rounded-md text-lg font-medium ml-1">SignUp</a>
@@ -96,7 +101,7 @@
         <div class="lg:hidden hidden" id="mobile-menu">
             <div class="px-2 pt-2 pb-3 space-y-1">
                 <a href="/" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Accueil</a>
-                <a href="/documentation" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Documentation</a>
+                <a href="/docs/index.html" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Documentation</a>
                 {% if session.user %}
                     <a href="/account" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Mon compte</a>
                     <a href="/logout" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Log Out</a>
@@ -109,34 +114,41 @@
     </nav>
 
     <script>
-        let menuButton = document.getElementById('menuBtn');
-        let alertButton = document.getElementById('alertBtn');
-        let menu = document.getElementById('mobile-menu');
-        let alert = document.getElementById('alert');
-
         let menuState = true;
-        menuButton.addEventListener('click', () => {
+        $('#menuBtn').on('click', (item) => {
             if (menuState) {
-                menu.classList.add('content');
-                menu.classList.remove('hidden');
+                $('#mobile-menu').addClass('content').removeClass('hidden');
                 menuState = false;
             } else {
-                menu.classList.add('hidden');
-                menu.classList.remove('content');
+                $('#mobile-menu').addClass('hidden').removeClass('content');
                 menuState = true;
             }
         });
 
         let alertState = true;
-        alertButton.addEventListener('click', () => {
-            if (alertState) {
-                alert.classList.add('content');
-                alert.classList.remove('hidden');
-                alertState = false;
+        $('#alertBtn').on('click', (item) => {
+            if (menuState) {
+                $('#alert').addClass('content').removeClass('hidden');
+                menuState = false;
             } else {
-                alert.classList.add('hidden');
-                alert.classList.remove('content');
-                alertState = true;
+                $('#alert').addClass('hidden').removeClass('content');
+                menuState = true;
+            }
+        });
+
+        $('#AlerteCapteursExterieur').on('click', (item) => {
+            if ($('#AlerteCapteursExterieur .tempDetail').hasClass('hidden')) {
+                $('#AlerteCapteursExterieur .tempDetail').removeClass('hidden');
+            } else {
+                $('#AlerteCapteursExterieur .tempDetail').addClass('hidden');
+            }
+        });
+
+        $('#AlerteCapteursInterieur').on('click', (item) => {
+            if ($('#AlerteCapteursInterieur .tempDetail').hasClass('hidden')) {
+                $('#AlerteCapteursInterieur .tempDetail').removeClass('hidden');
+            } else {
+                $('#AlerteCapteursInterieur .tempDetail').addClass('hidden');
             }
         });
     </script>

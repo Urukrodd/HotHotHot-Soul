@@ -99,10 +99,28 @@ class UserController extends Controller
         }
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
         session_unset();
 
         $this->redirect('/admin');
     }
+
+    public function profil()
+    {
+        if($_SESSION['user']) {
+            $pdo = Application::$app->db->pdo;
+
+            $stmt = $pdo->prepare("SELECT * FROM User WHERE email=?");
+            $stmt->execute(array($_SESSION['user']['email']));
+            $user = $stmt->fetch();
+
+            return $this->render('profil.html.twig', array(
+                'user' => $user
+            ));
+        } else {
+            $this->redirect('/');
+        }
+    }
+
 }
