@@ -1,0 +1,16 @@
+{
+  "name": "Hot Hot Hot !",
+  "short_name": "HHH !",
+  "description": "La météo !",
+  "icons": [
+    {
+      "src": "static/img/hhh_logo_512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/",
+  "theme_color": "#3367D6",
+  "background_color": "#3367D6",
+  "display": "minimal-ui"
+}

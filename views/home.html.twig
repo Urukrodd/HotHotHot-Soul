@@ -5,8 +5,8 @@
 {% block content %}
 	<div class="flex justify-center flex-wrap">
 
-		<div class="h-36 shadow-md rounded-lg overflow-hidden mx-10 my-3 md:my-10 border b-gray-400 rounded flex justify-center items-center p-6 bg-white">
-			<div class="flex flex-col items-center mr-6">
+		<div class="shadow-md rounded-lg overflow-hidden w-80 mx-10 my-3 md:my-10 border b-gray-400 rounded flex flex-wrap justify-around items-center p-3 bg-white">
+			<div class="flex flex-col items-center sm:mr-6">
 				<div class="w-11 h-11 flex items-center justify-center mb-2">
 					<svg  class="h-11 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
@@ -14,11 +14,11 @@
 				</div>
 				<div class="text-md font-semibold flex flex-col text-gray-900">Capteur Interieur</div>
 			</div>
-			<div id="valeurInterieur" class="text-3xl font-bold rounded-full h-24 w-24 flex items-center justify-center bg-gradient-to-t from-red-400 to-red-500 shadow-lg transform text-white">{{ valeurInterieur }}°</div>
+			<div id="valeurInterieur" class="z-auto text-3xl font-bold rounded-full h-24 w-24 flex items-center justify-center bg-gradient-to-t shadow-lg transform text-white">{{ valeurInterieur }}°</div>
 		</div>
 
-		<div class="h-36 shadow-md rounded-lg overflow-hidden mx-10 my-3 md:my-10 border b-gray-400 rounded flex justify-center items-center p-6 bg-white">
-			<div class="flex flex-col items-center mr-6">
+		<div class="shadow-md rounded-lg overflow-hidden w-80 mx-10 my-3 md:my-10 border b-gray-400 rounded flex flex-wrap justify-around items-center p-3 bg-white">
+			<div class="flex flex-col items-center">
 				<div class="w-11 h-11 flex items-center justify-center mb-2">
 					<svg class="h-11 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
 						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
@@ -26,68 +26,60 @@
 				</div>
 				<div class="text-md font-semibold flex flex-col text-gray-900">Capteur Exterieur</div>
 			</div>
-			<div id="valeurExterieur" class="text-3xl font-bold rounded-full mb-6 h-24 w-24 flex items-center justify-center bg-gradient-to-t from-blue-400 to-blue-500 shadow-lg transform text-white">{{ valeurExterieur }}°</div>
+			<div id="valeurExterieur" class="text-3xl font-bold rounded-full h-24 w-24 flex items-center justify-center bg-gradient-to-t shadow-lg transform text-white">{{ valeurExterieur }}°</div>
 		</div>
 	</div>
+{% endblock %}
 
+{% block script %}
 	<script>
-		let socket = new WebSocket('wss://ws.hothothot.dog:9502');
-		socket.onopen = function(event) {
-			console.log("Connexion établie");
-			socket.send("coucou !");
-		}
-		socket.onmessage = function(event) {
-			datas = JSON.parse(event.data);
-
-			let dataInterieur = document.getElementById("valeurInterieur");
-			let dataExterieur = document.getElementById("valeurExterieur");
-
-			dataInterieur.innerHTML = datas.capteurs[0].Valeur + '°';
-			dataExterieur.innerHTML = datas.capteurs[1].Valeur + '°';
-		}
-
-		let dataInterieur = document.getElementById("valeurInterieur");
-		let dataExterieur = document.getElementById("valeurExterieur");
-		let alerte = document.getElementById("alert");
-		let tempExterieur = dataExterieur.innerHTML.substring(0,dataExterieur.innerHTML.length-1);
-		let tempInterieur = dataInterieur.innerHTML.substring(0,dataInterieur.innerHTML.length-1);
-
+		let tempExterieur = $('#valeurExterieur').html().slice(0, -1);
+		let tempInterieur = $('#valeurInterieur').html().slice(0, -1);
 
 		if(tempExterieur > 35) {
 			$('#AlerteCapteursExterieur').addClass("bg-red-600").removeClass("hidden");
 			$('#alertBtn').addClass("bg-red-600").removeClass("text-gray-400").addClass("text-white");
 			$('#AlerteCapteursExterieur a').text("Hot Hot Hot !");
-		}
-		if(tempExterieur < 0) {
+			$('#AlerteCapteursExterieur .tempDetailNumber').text(tempExterieur);
+			$('#valeurExterieur').addClass('from-red-800').addClass('to-red-900');
+		} else if(tempExterieur > 22) {
+			$('#valeurExterieur').addClass('from-red-400').addClass('to-red-500');
+		} else if(tempExterieur < 0) {
 			$('#AlerteCapteursExterieur').addClass('bg-blue-500').removeClass("hidden");
 			$('#alertBtn').addClass("bg-red-600").removeClass("text-gray-400").addClass("text-white");
 			$('#AlerteCapteursExterieur a').text("Banquise en vue !");
+			$('#AlerteCapteursExterieur .tempDetailNumber').text(tempExterieur);
+			$('#valeurExterieur').addClass('from-blue-300').addClass('to-blue-400');
+		} else {
+			$('#valeurExterieur').addClass('from-blue-400').addClass('to-blue-500');
 		}
 
 		if(tempInterieur > 50) {
 			$('#AlerteCapteursInterieur').addClass('bg-red-500').removeClass("hidden");
 			$('#alertBtn').addClass("bg-red-600").removeClass("text-gray-400").addClass("text-white");
 			$('#AlerteCapteursInterieur a').text("Appelez les pompiers ou arrêtez votre barbecue !");
-		}
-		if(tempInterieur > 22) {
+			$('#AlerteCapteursInterieur .tempDetailNumber').text(tempInterieur);
+			$('#valeurInterieur').addClass('from-red-800').addClass('to-red-900');
+		} else if(tempInterieur > 22) {
 			$('#AlerteCapteursInterieur').addClass('bg-red-500').removeClass("hidden");
 			$('#alertBtn').addClass("bg-red-600").removeClass("text-gray-400").addClass("text-white");
 			$('#AlerteCapteursInterieur a').text("Baissez le chauffage !");
-		}
-		if(tempInterieur < 12) {
-			$('#AlerteCapteursInterieur').addClass('bg-blue-500').removeClass("hidden");
-			$('#alertBtn').addClass("bg-red-600").removeClass("text-gray-400").addClass("text-white");
-			$('#AlerteCapteursInterieur a').text("Montez le chauffage ou mettez un gros pull !");
-		}
-		if(tempInterieur < 0) {
+			$('#AlerteCapteursInterieur .tempDetailNumber').text(tempInterieur);
+			$('#valeurInterieur').addClass('from-red-400').addClass('to-red-500');
+		} else if(tempInterieur < 0) {
 			$('#AlerteCapteursInterieur').addClass('bg-blue-500').removeClass("hidden");
 			$('#alertBtn').addClass("bg-red-600").removeClass("text-gray-400").addClass("text-white");
 			$('#AlerteCapteursInterieur a').text("Canalisations gelées, appelez SOS plombier - et mettez un bonnet !");
+			$('#AlerteCapteursInterieur .tempDetailNumber').text(tempInterieur);
+			$('#valeurInterieur').addClass('from-blue-300').addClass('to-blue-400');
+		} else if(tempInterieur < 12) {
+			$('#AlerteCapteursInterieur').addClass('bg-blue-500').removeClass("hidden");
+			$('#alertBtn').addClass("bg-red-600").removeClass("text-gray-400").addClass("text-white");
+			$('#AlerteCapteursInterieur a').text("Montez le chauffage ou mettez un gros pull !");
+			$('#AlerteCapteursInterieur .tempDetailNumber').text(tempInterieur);
+			$('#valeurInterieur').addClass('from-blue-400').addClass('to-blue-500');
+		} else {
+			$('#valeurInterieur').addClass('from-blue-400').addClass('to-blue-500');
 		}
 	</script>
-
-{% endblock %}
-
-{% block script %}
-
 {% endblock %}
