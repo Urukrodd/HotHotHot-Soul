@@ -28,6 +28,59 @@
 			</div>
 			<div id="valeurExterieur" class="text-3xl font-bold rounded-full h-24 w-24 flex items-center justify-center bg-gradient-to-t shadow-lg transform text-white">{{ valeurExterieur }}°</div>
 		</div>
+
+		<canvas id="line-chart"></canvas>
+		<script>
+			new Chart(document.getElementById("line-chart"), {
+				type: 'line',
+				data: {
+					labels: [
+						{% for created_el in created_at %}
+							"{{ created_el.created_at }}",
+						{% endfor %}
+							],
+					datasets: [{
+						data: [
+									{% for temperature_out in temperatures_out %}
+										{{ temperature_out.val }},
+									{% endfor %}
+						],
+						label: "Temperature extérieure",
+						borderColor: "#3e95cd",
+						fill: false
+					},
+						{
+							data: [
+								{% for temperature_in in temperatures_in %}
+								{{ temperature_in.val }},
+								{% endfor %}
+							],
+							label: "Temperature intérieure",
+							borderColor: "#EE3F3F",
+							fill: false
+						}
+
+					]
+				},
+				options: {
+					title: {
+						display: true,
+						text: 'Température sur les 24 dernières heures'
+					}
+				}
+			});
+		</script>
+{#		{{ dump(temperatures_out) }}#}
+{#		{% for temperature_out in temperatures_out %}#}
+{#			<span> {{ temperature_out.val }} </span>#}
+{#		{% endfor %}#}
+{#		{% for temperature_in in temperatures_in %}#}
+{#			<span> {{ temperature_in.val }} </span>#}
+{#		{% endfor %}#}
+{#		{% for created_el in created_at %}#}
+{#			<span> {{ created_el.created_at }} </span>#}
+{#		{% endfor %}#}
+
 	</div>
 {% endblock %}
 
