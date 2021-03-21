@@ -369,48 +369,44 @@
 		<div class="doc">
 			<ol>
 				<li><a href="index.html">Index</a></li>
-									<li><a href="installation.html">installation.md</a></li>
-									<li><a href="intro.html">intro.md</a></li>
+									<li><a href="HotHotHot.html">HotHotHot.md</a></li>
 							</ol>
 
 			<h1>HotHotHot !</h1>
-<p>HotHotHot est une application web conçue en PHP et JavaScript qui dont le but est être un interface d&#039;information et de gestion d&#039;un système domotique.</p>
-<h2>Installation</h2>
-<p>Nous utilisons une base de données MYSQL avec PhpMyAdmin et un serveur composé de PHP 8.0 et Apache. Pour la base de données, PHP et Apache, il est possible de passer par un WAMP ou de l&#039;installer localement.</p>
-<p>NB : Avant de lancer l&#039;application, il faut effectuer les migrations (<code>php migrations.php</code> à la racine de l&#039;application), et installer Composer (<code>composer install</code> à la racine de l&#039;application). PHP 8 est obligatoire pour effectuer ces migrations.</p>
-<p>La configuration de la base de données se fait dans le .env (un .env.example est disponible pour donner la syntaxe à suivre). La manière la plus simple de lancer l&#039;application métier est d&#039;effectuer un <code>php -S [monaddresse]</code> depuis le dossier <code>public/</code> du framework.</p>
-<h3>Lancer l&#039;application</h3>
-<blockquote>
-<p>:warning: <strong>Attention</strong>: fermez WAMP ou tout autres logiciel utilisant le port 80, 8080 ou 3306!</p>
-</blockquote>
-<p>Pour lancer l&#039;application, il vous faudra taper ces commandes depuis la racine du projet :</p>
-<pre><code>composer install</code></pre>
-<pre><code>php migrations.php</code></pre>
-<pre><code>cd public/
-php -S [monaddresse]</code></pre>
+<p>HotHotHot est une application web conçue dans le but d&#039;être un interface d&#039;information et de gestion d&#039;un système domotique.</p>
+<p>Ce site reçoit des données en provenance de différents capteur.
+Elle affiche ces données, leur historique si nécessaire et propose des suggestions,
+émet des alertes à l’attention des utilisateurs.</p>
 <h3>Créer un compte utilisateur</h3>
-<p>Pour créer un compte utilisateur, il faut utiliser la commande :</p>
-<pre><code>php core/Commands/createSimpleUser.php username email password</code></pre>
-<h3>Créer un compte Super utilisateur</h3>
-<p>Pour créer un compte super utilisateur, il faut utiliser la commande :</p>
-<pre><code>php core/Commands/createSuperUser.php username email password</code></pre>
-<h3>Générer et regénerer la documentation</h3>
-<p>Pour générer la documentation : </p>
+<p>Afin de créer un compte utilisateur, veuillez cliquer sur <code>SignUp</code> en haut à droite.
+Cela vous redirigera vers la page de création de compte.</p>
+<p>Une fois sur la page de création de compte, vous aurez 4 champs à renseigner:</p>
 <ul>
-<li>S&#039;assurer de la présence de fichiers Markdown (.md) dans <code>/doc/markdown</code>.
-Ensuite exécuter la commande</li>
+<li>Le nom d&#039;utilisateur</li>
+<li>L&#039;email</li>
+<li>Le mot de passe </li>
+<li>La confirmation de mot de passe</li>
 </ul>
-<pre><code>php soulGen.php</code></pre>
-<p>La documentation sera générée dans <code>public/docs/</code> et accessible depuis la partie &quot;documentation du site&quot;.</p>
-<h3>Utilisation</h3>
-<p>L&#039;application se trouve sur <a href="http://localhost:80">le port 80</a>. Pour accéder directement à la base de données, cela se
-passe sur <a href="http://localhost:3306">le port 3306</a>. Pour accéder à la base de données avec PhpMyAdmin, il faut vous rendre
-sur <a href="http://localhost:8080">le port 8080</a>.</p>
-<p>L&#039;appplication ne marche qu&#039;avec un type de fichier qui est le XLSX. Pour que tout marche, veuillez utiliser
-ce <a href="https://drive.google.com/file/d/1yrEBeDg6ypIsj1i8ccbXeVn_YEbebCZF/view?usp=sharing">template</a></p>
-<blockquote>
-<p>Il se trouve aussi à la racine du projet sous le nom de list.xlsx</p>
-</blockquote>
+<p>Une fois la création de compte faites, vous serez redirigé vers la page de connexion.</p>
+<h3>Se connecter à compte utilisateur</h3>
+<p>Pour pouvoir se connecter à un compte utilisateur, vous devez, au préalable, créer un compte utilisateur.
+Une fois cela fait, vous pouvez accéder à la page de connexion en cliquant sur <code>Login</code> en haut à droite.</p>
+<p>Pour vous connecter, vous devez rentrer 2 champs:</p>
+<ul>
+<li>Le nom d&#039;utilisateur</li>
+<li>Le mot de passe</li>
+</ul>
+<h3>Accéder à son compte</h3>
+<p>Une fois le compte créé et connecté, vous pouvez accéder à votre compte en cliquant sur <code>Mon compte</code>.</p>
+<h3>Se deconnecter</h3>
+<p>Pour se déconnecter vous devez cliquer sur <code>LogOut</code> en haut à droite.</p>
+<h3>Les capteurs</h3>
+<p>Sur la page d&#039;accueil, vous pouvez voir les 2 capteurs. Le capteur interieur et le capteur exterieur.
+Les 2 capteurs affichent la températures en temps réel.</p>
+<p>La petite cloche en haut à droite affiche les temperatures <code>maximum</code> et <code>minimum</code> de chaque capteur. Le minimum et le maximum sont remis à jour chaque jour.</p>
+<h3>Les alertes</h3>
+<p>Des alertes peuvent apparaitre si la temperature atteint un certain seuil.
+Si il y a une alerte, la cloche en haut à droite devient rouge et indique la ou les alertes actuelles.</p>
 		</div>
 
 	</body>
