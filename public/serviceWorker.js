@@ -16,10 +16,27 @@ self.addEventListener('install', e => {
    );
 });
 
-self.addEventListener('fetch', e => {
-   e.respondWith(
-       caches.match(e.request).then(response => {
-           return fetch(e.request) || response;
-       })
-   );
+self.addEventListener('fetch', function(event) {
+    event.respondWith(
+        // Try the network
+        fetch(event.request)
+            .then(function(res) {
+                return caches.open('static')
+                    .then(function(cache) {
+                        // Put in cache if succeeds
+                        cache.put(event.request.url, res.clone());
+                        return res;
+                    })
+            })
+            .catch(function(err) {
+                // Fallback to cache
+                return caches.match(event.request)
+                    .then(function(res){
+                        if (res === undefined) {
+                            // get and return the offline page
+                        }
+                        return res;
+                    })
+            })
+    );
 });

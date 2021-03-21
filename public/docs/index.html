@@ -3,11 +3,16 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Base layout</title>
-		<!--
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/styles/default.min.css">
-		<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"></script>
-		-->
+		<title>HHH! Documentation</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="theme-color" content="#3367D6">
+		<link rel="manifest" href="/manifest.json">
+		<link rel="icon" href="/static/img/hhh_logo_512.png">
+		<link rel="apple-touch-icon" href="/static/img/hhh_logo_512.png">
+		<link href="/static/css/tailwind.css" rel="stylesheet">
+		<script src="/static/js/fontAwesome.js"></script>
+		<script src="/static/js/jquery.js"></script>
+		<script src="/static/js/index.js"></script>
 		<style>
 			html {
 				font-size: 100%;
@@ -16,10 +21,10 @@
 				-ms-text-size-adjust: 100%;
 			}
 
-			body {
+			.doc {
 				color: #444;
 				font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
-				font-size: 12px;
+				font-size: 16px;
 				line-height: 1.5em;
 				padding: 1em;
 				margin: auto;
@@ -27,29 +32,29 @@
 				background: #fefefe;
 			}
 
-			a {
+			.doc a {
 				color: #0645ad;
 				text-decoration: none;
 			}
 
-			a:visited {
+			.doc a:visited {
 				color: #0b0080;
 			}
 
-			a:hover {
+			.doc a:hover {
 				color: #06e;
 			}
 
-			a:active {
+			.doc a:active {
 				color: #faa700;
 			}
 
-			a:focus {
+			.doc a:focus {
 				outline: thin dotted;
 			}
 
-			a:hover,
-			a:active {
+			.doc a:hover,
+			.doc a:active {
 				outline: 0;
 			}
 
@@ -299,13 +304,77 @@
 	</head>
 	<body>
 
-		<ol>
-	<li><a href="index.html">Index</a></li>
-			<li><a href="emo.html">demo.md</a></li>
-			<li><a href="installation.html">installastion.md</a></li>
-			<li><a href="intro.html">intro.md</a></li>
-	</ol>
+		<nav class="bg-gray-800">
+	<div class="max-w-7xl mx-auto px-2 lg:px-3 lg:px-4">
+		<div class="relative flex items-center justify-between h-11">
+			<div class="absolute inset-y-0 left-0 flex items-center lg:hidden">
+				<button id="menuBtn" type="button" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+					<span class="sr-only">Open main menu</span>
+					<svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+					</svg>
+					<svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+					</svg>
+				</button>
+			</div>
+			<div class="flex-1 flex items-center justify-center lg:items-stretch lg:justify-start">
+				<div class="flex-shrink-0 flex items-center">
+					<h1 class="inline-flex text-2xl text-blue-100 font-semibold">
+						Documentation
+					</h1>
+				</div>
+				<div class="hidden lg:block lg:ml-6">
+					<div class="flex space-x-4">
+						<a href="/" class="inline-flex text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-lg font-medium ml-8">
+							Retour sur le site
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
+	<div class="lg:hidden hidden" id="mobile-menu">
+		<div class="px-2 pt-2 pb-3 space-y-1">
+			<a href="/" class="text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Retour sur le site</a>
+		</div>
+	</div>
+</nav>
+
+<script>
+	let menuState = true;
+	$('#menuBtn').on('click', (item) => {
+		if (menuState) {
+			$('#mobile-menu').addClass('content').removeClass('hidden');
+			menuState = false;
+		} else {
+			$('#mobile-menu').addClass('hidden').removeClass('content');
+			menuState = true;
+		}
+	});
+
+	let alertState = true;
+	$('#alertBtn').on('click', (item) => {
+		if (menuState) {
+			$('#alert').addClass('content').removeClass('hidden');
+			menuState = false;
+		} else {
+			$('#alert').addClass('hidden').removeClass('content');
+			menuState = true;
+		}
+	});
+</script>
+
+		<div class="doc">
+			<ol>
+				<li><a href="index.html">Index</a></li>
+									<li><a href="installation.html">installation.md</a></li>
+									<li><a href="intro.html">intro.md</a></li>
+							</ol>
+
+			
+		</div>
 
 	</body>
 </html>

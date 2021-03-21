@@ -3,11 +3,16 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Base layout</title>
-		<!--
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/styles/default.min.css">
-		<script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.6.0/build/highlight.min.js"></script>
-		-->
+		<title>HHH! Documentation</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="theme-color" content="#3367D6">
+		<link rel="manifest" href="/manifest.json">
+		<link rel="icon" href="/static/img/hhh_logo_512.png">
+		<link rel="apple-touch-icon" href="/static/img/hhh_logo_512.png">
+		<link href="/static/css/tailwind.css" rel="stylesheet">
+		<script src="/static/js/fontAwesome.js"></script>
+		<script src="/static/js/jquery.js"></script>
+		<script src="/static/js/index.js"></script>
 		<style>
 			html {
 				font-size: 100%;
@@ -16,10 +21,10 @@
 				-ms-text-size-adjust: 100%;
 			}
 
-			body {
+			.doc {
 				color: #444;
 				font-family: Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif;
-				font-size: 12px;
+				font-size: 16px;
 				line-height: 1.5em;
 				padding: 1em;
 				margin: auto;
@@ -27,29 +32,29 @@
 				background: #fefefe;
 			}
 
-			a {
+			.doc a {
 				color: #0645ad;
 				text-decoration: none;
 			}
 
-			a:visited {
+			.doc a:visited {
 				color: #0b0080;
 			}
 
-			a:hover {
+			.doc a:hover {
 				color: #06e;
 			}
 
-			a:active {
+			.doc a:active {
 				color: #faa700;
 			}
 
-			a:focus {
+			.doc a:focus {
 				outline: thin dotted;
 			}
 
-			a:hover,
-			a:active {
+			.doc a:hover,
+			.doc a:active {
 				outline: 0;
 			}
 
@@ -300,7 +305,16 @@
 	<body>
 
 		{% include 'aside.html.twig' with {'pages': pages} %}
-		{{ HTML }}
+		<div class="doc">
+			<ol>
+				<li><a href="index.html">Index</a></li>
+				{% for page in pages %}
+					<li><a href="{{ page|trim('.md') }}.html">{{ page }}</a></li>
+				{% endfor %}
+			</ol>
+
+			{{ HTML }}
+		</div>
 
 	</body>
 </html>
